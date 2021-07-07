@@ -1,4 +1,6 @@
-module main
+module github.com/RunningIkkyu/leetcode-com-cli
+
+go 1.16
 
 require (
 	github.com/cheynewallace/tabby v1.1.1 // indirect
@@ -8,5 +10,3 @@ require (
 	github.com/tidwall/gjson v1.8.1
 
 )
-
-go 1.16
