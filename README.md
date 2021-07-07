@@ -28,9 +28,11 @@ go build cmd/main
 
 ## View and Search
 
-- [ ] Show today's daily problem.
+- [x] Show today's daily problem.
 - [ ] Show detail of a problem.
 - [ ] Get template of a problem in any language.
+- [ ] Search questions.
+- [ ] Filter questions.
 
 ## Cache
 
