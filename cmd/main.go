@@ -1,9 +1,9 @@
 package main
 
 import (
-    "github.com/RunningIkkyu/leetcode-com-cli"
+    "github.com/RunningIkkyu/leetcode-com-cli/pkg"
 )
 
 func main() {
-	ShowTodayQuestion()
+	pkg.ShowTodayQuestion()
 }
