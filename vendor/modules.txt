@@ -9,8 +9,14 @@ github.com/jedib0t/go-pretty/v6/text
 # github.com/mattn/go-runewidth v0.0.13
 ## explicit
 github.com/mattn/go-runewidth
+# github.com/olekukonko/tablewriter v0.0.5
+## explicit
+github.com/olekukonko/tablewriter
 # github.com/rivo/uniseg v0.2.0
 github.com/rivo/uniseg
+# github.com/ssor/bom v0.0.0-20170718123548-6386211fdfcf
+## explicit
+github.com/ssor/bom
 # github.com/tidwall/gjson v1.8.1
 ## explicit
 github.com/tidwall/gjson
@@ -18,5 +24,13 @@ github.com/tidwall/gjson
 github.com/tidwall/match
 # github.com/tidwall/pretty v1.1.0
 github.com/tidwall/pretty
-# golang.org/x/sys v0.0.0-20180816055513-1c9583448a9c
+# golang.org/x/net v0.0.0-20210614182718-04defd469f4e
+## explicit
+golang.org/x/net/html
+golang.org/x/net/html/atom
+# golang.org/x/sys v0.0.0-20210423082822-04245dca01da
+golang.org/x/sys/internal/unsafeheader
 golang.org/x/sys/windows
+# jaytaylor.com/html2text v0.0.0-20200412013138-3577fbdbcff7
+## explicit
+jaytaylor.com/html2text
