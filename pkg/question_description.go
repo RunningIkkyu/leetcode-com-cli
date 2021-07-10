@@ -7,7 +7,6 @@ import (
 	"strings"
 
 	"github.com/tidwall/gjson"
-    "jaytaylor.com/html2text"
 )
 
 func GetQuestionDetail(titleSlug string) {
@@ -78,10 +77,5 @@ func extractQuesitionDetailFromBody(result string) map[string]string {
 }
 
 func GetPrettyText(html string) string{
-    text, err := html2text.FromString(html, html2text.Options{PrettyTables: true})
-	if err != nil {
-		panic(err)
-	}
-	//fmt.Println(text)
-    return text
+    return ""
 }
