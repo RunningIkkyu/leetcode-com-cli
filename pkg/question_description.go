@@ -9,7 +9,7 @@ import (
 	"github.com/tidwall/gjson"
 )
 
-func GetQuestionDetail(titleSlug string) {
+func GetQuestionDetail(titleSlug string) string{
 
   url := "https://leetcode-cn.com/graphql/"
   method := "POST"
@@ -23,7 +23,7 @@ func GetQuestionDetail(titleSlug string) {
 
   if err != nil {
     fmt.Println(err)
-    return
+    return ""
   }
   req.Header.Add("Content-Type", "application/json")
   req.Header.Add("Cookie", "csrftoken=TcsWO3MAaL0FZ0NBKt4kkGp1N3HokGbVbhhCkgNpEjiXGqLJAeqVgpZ28WJdILo2")
@@ -31,19 +31,21 @@ func GetQuestionDetail(titleSlug string) {
   res, err := client.Do(req)
   if err != nil {
     fmt.Println(err)
-    return
+    return ""
   }
   defer res.Body.Close()
 
   body, err := ioutil.ReadAll(res.Body)
   if err != nil {
     fmt.Println(err)
-    return
+    return ""
   }
   detailMap := extractQuesitionDetailFromBody(string(body))
-  content := detailMap["content"]
+  //content := detailMap["content"]
+  content := detailMap["translatedContent"]
   //text := GetPrettyText(content)
-  fmt.Println(content)
+  //fmt.Println(content)
+  return content
 }
 
 func extractQuesitionDetailFromBody(result string) map[string]string {
@@ -77,5 +79,5 @@ func extractQuesitionDetailFromBody(result string) map[string]string {
 }
 
 func GetPrettyText(html string) string{
-    return ""
+    return Html2BashText(html)
 }
