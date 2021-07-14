@@ -41,8 +41,8 @@ func GetQuestionDetail(titleSlug string) string{
     return ""
   }
   detailMap := extractQuesitionDetailFromBody(string(body))
-  //content := detailMap["content"]
-  content := detailMap["translatedContent"]
+  content := detailMap["content"]
+  //content := detailMap["translatedContent"]
   //text := GetPrettyText(content)
   //fmt.Println(content)
   return content

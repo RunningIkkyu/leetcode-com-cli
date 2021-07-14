@@ -62,7 +62,7 @@ func Html2BashText(s string) string {
 
 	// bold text
 	s = regexp.MustCompile(`<strong>`).ReplaceAllString(s, TERMCOLOR_BOLD)
-	s = regexp.MustCompile(`</strong>`).ReplaceAllString(s, TERMCOLOR_RESETBOLD)
+	s = regexp.MustCompile(`</strong>`).ReplaceAllString(s, TERMCOLOR_RESETALL)
 
     // underline text
 	s = regexp.MustCompile(`<u>`).ReplaceAllString(s, TERMCOLOR_UNDERLINED)
@@ -77,21 +77,22 @@ func Html2BashText(s string) string {
 	s = regexp.MustCompile(`</code>`).ReplaceAllString(s, TERMCOLOR_RESETITALIC)
 
     // Word hightlight
-    s = regexp.MustCompile(`(Example.*:)`).ReplaceAllString(s, TERMCOLOR_RED + `$1` + TERMCOLOR_WHITE)
-    s = regexp.MustCompile(`(Constraints.*:)`).ReplaceAllString(s, TERMCOLOR_RED + `$1` + TERMCOLOR_WHITE)
-    s = regexp.MustCompile(`(Input)`).ReplaceAllString(s, TERMCOLOR_GREEN + `$1` + TERMCOLOR_WHITE)
-    s = regexp.MustCompile(`(Output)`).ReplaceAllString(s, TERMCOLOR_GREEN + `$1` + TERMCOLOR_WHITE)
-    s = regexp.MustCompile(`(Explanation)`).ReplaceAllString(s, TERMCOLOR_GREEN + `$1` + TERMCOLOR_WHITE)
+    s = regexp.MustCompile(`(Example.*:)`).ReplaceAllString(s, TERMCOLOR_RED + `$1` + TERMCOLOR_RESETALL)
+    s = regexp.MustCompile(`(Constraints.*:)`).ReplaceAllString(s, TERMCOLOR_RED + `$1` + TERMCOLOR_RESETALL)
+    s = regexp.MustCompile(`(Input)`).ReplaceAllString(s, TERMCOLOR_GREEN + `$1` + TERMCOLOR_RESETALL)
+    s = regexp.MustCompile(`(Output)`).ReplaceAllString(s, TERMCOLOR_GREEN + `$1` + TERMCOLOR_RESETALL)
+    s = regexp.MustCompile(`(Explanation)`).ReplaceAllString(s, TERMCOLOR_GREEN + `$1` + TERMCOLOR_RESETALL)
 
-    s = regexp.MustCompile(`(示例.*[:：])`).ReplaceAllString(s, TERMCOLOR_RED + `$1` + TERMCOLOR_WHITE)
-    s = regexp.MustCompile(`(输入\s*[:：])`).ReplaceAllString(s, TERMCOLOR_GREEN + `$1` + TERMCOLOR_WHITE)
-    s = regexp.MustCompile(`(输出\s*[:：])`).ReplaceAllString(s, TERMCOLOR_GREEN + `$1` + TERMCOLOR_WHITE)
-    s = regexp.MustCompile(`(提示\s*[:：])`).ReplaceAllString(s, TERMCOLOR_GREEN + `$1` + TERMCOLOR_WHITE)
+    s = regexp.MustCompile(`(示例.*[:：])`).ReplaceAllString(s, TERMCOLOR_RED + `$1` + TERMCOLOR_RESETALL)
+    s = regexp.MustCompile(`(输入\s*[:：])`).ReplaceAllString(s, TERMCOLOR_GREEN + `$1` + TERMCOLOR_RESETALL)
+    s = regexp.MustCompile(`(输出\s*[:：])`).ReplaceAllString(s, TERMCOLOR_GREEN + `$1` + TERMCOLOR_RESETALL)
+    s = regexp.MustCompile(`(提示\s*[:：])`).ReplaceAllString(s, TERMCOLOR_GREEN + `$1` + TERMCOLOR_RESETALL)
     
 
     // make <code> italic
-	s = regexp.MustCompile(`<sup>`).ReplaceAllString(s, "^(")
-	s = regexp.MustCompile(`</sup>`).ReplaceAllString(s, ")")
+	s = regexp.MustCompile(`<sup>`).ReplaceAllString(s, "^{")
+	s = regexp.MustCompile(`<sub>`).ReplaceAllString(s, "_{")
+	s = regexp.MustCompile(`</sup>|</sub>`).ReplaceAllString(s, "}")
 
     // HTML escape symbols, just some of them.
 	s = regexp.MustCompile(`&nbsp;`).ReplaceAllString(s, " ")
