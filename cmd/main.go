@@ -1,7 +1,7 @@
-package main
+package cmd
 
 import (
-    "github.com/RunningIkkyu/leetcode-com-cli/pkg"
+	"github.com/RunningIkkyu/leetcode-com-cli/pkg"
 )
 
 func main() {
