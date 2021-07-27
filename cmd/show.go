@@ -8,10 +8,12 @@ import (
 )
 
 var idOrTitle string
+var showLanguage string
 
 func init() {
 	rootCmd.AddCommand(showCmd)
 	showCmd.Flags().StringVarP(&idOrTitle, "id", "i", "", "show question with specific id or title.")
+	showCmd.Flags().StringVarP(&showLanguage, "language", "l", "", "set question language. zh/en")
 }
 
 var showCmd = &cobra.Command{
@@ -19,18 +21,18 @@ var showCmd = &cobra.Command{
 	Short: "Display question details",
 	Long:  `Display question details. With -g/-l/-x, the code template would be auto generated for you.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Leetcode-cli v0.1")
-		fmt.Println(args)
-		if len(args) != 1 {
+		showLanguage = pkg.StandardedLanguage(showLanguage)
+		var titleSlug string
+		switch len(args) {
+		case 0:
+			m := pkg.GetTodayQuestionInfo()
+			titleSlug = m["titleSlug"]
+		case 1:
+			titleSlug = args[0]
+		default:
 			fmt.Println("You should provide exactly one question id/title.")
+			return
 		}
-		res := pkg.GetQuestionDetail(args[0])
-		if res == "" {
-			fmt.Printf("No such question named: '%s'\n", args[0])
-		}
-		res = pkg.GetPrettyText(res)
-		fmt.Println(res)
-		fmt.Println("[debug] the title is :", idOrTitle)
-		fmt.Println(cmd.Flags())
+		pkg.PrettyPrintQuestionByTitleSlug(titleSlug, showLanguage)
 	},
 }

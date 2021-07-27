@@ -17,10 +17,15 @@ git clone https://github.com/RunningIkkyu/leetcode-com-cli.git
 
 Change directory to the project, run
 
-
 ```bash
-go build cmd/main
-./main
+go build -o leetcode main       # Build source code.
+cp leetcode /usr/local/bin/     # Copy to bin directory. 
+```
+
+To check if the Installation is success, run 
+
+```
+leetcode version
 ```
 
 
@@ -29,7 +34,7 @@ go build cmd/main
 ## View and Search
 
 - [x] Show today's daily problem.
-- [ ] Show detail of a problem.
+- [x] Show detail of a problem.
 - [ ] Get template of a problem in any language.
 - [ ] Search questions.
 - [ ] Filter questions.
@@ -70,3 +75,58 @@ go build cmd/main
 - [ ] Show heatmap graph.
 - [ ] Show calendar graph.
 
+
+# Quick start
+
+Help about any command:
+
+```bash
+leetcode help
+```
+
+Print the version number:
+
+```bash
+leetcode version
+```
+
+
+## Show question
+
+Show today's daily question:
+
+```bash
+leetcode show
+```
+
+Show question by title slug:
+
+```bash
+leetcode show two-sum
+```
+
+> You can specify the language by `-l [language]` flag.
+>
+> The default language of leetcode-cli is English.
+>
+> Now leecode.com just support zh/en.
+
+Show question in english:
+
+```bash
+leetcode show two-sum -l en
+# or just
+# leetcode show two-sum
+```
+
+show question in Chinese
+
+```bash
+leetcode show two-sum -l zh
+```
+
+or 
+
+```
+leetcode show -l zh
+```

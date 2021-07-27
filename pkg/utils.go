@@ -56,6 +56,18 @@ const (
 	TERMCOLOR_BACKGROUNDWHITE        = "\033[107m"
 )
 
+func BoldText(s string) string {
+	return TERMCOLOR_BOLD + s + TERMCOLOR_RESETBOLD
+}
+
+func ItalicText(s string) string {
+	return TERMCOLOR_ITALIC + s + TERMCOLOR_RESETITALIC
+}
+
+func UnderlineText(s string) string {
+	return TERMCOLOR_UNDERLINED + s + TERMCOLOR_RESETUNDERLINED
+}
+
 func Html2BashText(s string) string {
 	// remove <p> </p>
 	s = regexp.MustCompile(`<p>|</p>|<pre>|</pre>`).ReplaceAllString(s, "")
@@ -64,52 +76,51 @@ func Html2BashText(s string) string {
 	s = regexp.MustCompile(`<strong>`).ReplaceAllString(s, TERMCOLOR_BOLD)
 	s = regexp.MustCompile(`</strong>`).ReplaceAllString(s, TERMCOLOR_RESETALL)
 
-    // underline text
+	// underline text
 	s = regexp.MustCompile(`<u>`).ReplaceAllString(s, TERMCOLOR_UNDERLINED)
 	s = regexp.MustCompile(`</u>`).ReplaceAllString(s, TERMCOLOR_RESETUNDERLINED)
 
-    // <em>
+	// <em>
 	s = regexp.MustCompile(`<em>`).ReplaceAllString(s, TERMCOLOR_ITALIC)
 	s = regexp.MustCompile(`</em>`).ReplaceAllString(s, TERMCOLOR_RESETITALIC)
 
-    // make <code> italic
+	// make <code> italic
 	s = regexp.MustCompile(`<code>`).ReplaceAllString(s, TERMCOLOR_ITALIC)
 	s = regexp.MustCompile(`</code>`).ReplaceAllString(s, TERMCOLOR_RESETITALIC)
 
-    // Word hightlight
-    s = regexp.MustCompile(`(Example.*:)`).ReplaceAllString(s, TERMCOLOR_RED + `$1` + TERMCOLOR_RESETALL)
-    s = regexp.MustCompile(`(Constraints.*:)`).ReplaceAllString(s, TERMCOLOR_RED + `$1` + TERMCOLOR_RESETALL)
-    s = regexp.MustCompile(`(Input)`).ReplaceAllString(s, TERMCOLOR_GREEN + `$1` + TERMCOLOR_RESETALL)
-    s = regexp.MustCompile(`(Output)`).ReplaceAllString(s, TERMCOLOR_GREEN + `$1` + TERMCOLOR_RESETALL)
-    s = regexp.MustCompile(`(Explanation)`).ReplaceAllString(s, TERMCOLOR_GREEN + `$1` + TERMCOLOR_RESETALL)
+	// Word hightlight
+	s = regexp.MustCompile(`(Example.*:)`).ReplaceAllString(s, TERMCOLOR_RED+`$1`+TERMCOLOR_RESETALL)
+	s = regexp.MustCompile(`(Constraints.*:)`).ReplaceAllString(s, TERMCOLOR_RED+`$1`+TERMCOLOR_RESETALL)
+	s = regexp.MustCompile(`(Input)`).ReplaceAllString(s, TERMCOLOR_GREEN+`$1`+TERMCOLOR_RESETALL)
+	s = regexp.MustCompile(`(Output)`).ReplaceAllString(s, TERMCOLOR_GREEN+`$1`+TERMCOLOR_RESETALL)
+	s = regexp.MustCompile(`(Explanation)`).ReplaceAllString(s, TERMCOLOR_GREEN+`$1`+TERMCOLOR_RESETALL)
 
-    s = regexp.MustCompile(`(示例.*[:：])`).ReplaceAllString(s, TERMCOLOR_RED + `$1` + TERMCOLOR_RESETALL)
-    s = regexp.MustCompile(`(输入\s*[:：])`).ReplaceAllString(s, TERMCOLOR_GREEN + `$1` + TERMCOLOR_RESETALL)
-    s = regexp.MustCompile(`(输出\s*[:：])`).ReplaceAllString(s, TERMCOLOR_GREEN + `$1` + TERMCOLOR_RESETALL)
-    s = regexp.MustCompile(`(提示\s*[:：])`).ReplaceAllString(s, TERMCOLOR_GREEN + `$1` + TERMCOLOR_RESETALL)
-    
+	s = regexp.MustCompile(`(示例.*[:：])`).ReplaceAllString(s, TERMCOLOR_RED+`$1`+TERMCOLOR_RESETALL)
+	s = regexp.MustCompile(`(输入\s*[:：])`).ReplaceAllString(s, TERMCOLOR_GREEN+`$1`+TERMCOLOR_RESETALL)
+	s = regexp.MustCompile(`(输出\s*[:：])`).ReplaceAllString(s, TERMCOLOR_GREEN+`$1`+TERMCOLOR_RESETALL)
+	s = regexp.MustCompile(`(提示\s*[:：])`).ReplaceAllString(s, TERMCOLOR_GREEN+`$1`+TERMCOLOR_RESETALL)
 
-    // make <code> italic
+	// make <code> italic
 	s = regexp.MustCompile(`<sup>`).ReplaceAllString(s, "^{")
 	s = regexp.MustCompile(`<sub>`).ReplaceAllString(s, "_{")
 	s = regexp.MustCompile(`</sup>|</sub>`).ReplaceAllString(s, "}")
 
-    // HTML escape symbols, just some of them.
+	// HTML escape symbols, just some of them.
 	s = regexp.MustCompile(`&nbsp;`).ReplaceAllString(s, " ")
 	s = regexp.MustCompile(`&lt;`).ReplaceAllString(s, "<")
 	s = regexp.MustCompile(`&gt;`).ReplaceAllString(s, ">")
 	s = regexp.MustCompile(`&quot;`).ReplaceAllString(s, "\"")
 	s = regexp.MustCompile(`&amp;`).ReplaceAllString(s, "&")
 	s = regexp.MustCompile(`&apos;|&#39;`).ReplaceAllString(s, "'")
-    
-    // list
+
+	// list
 	s = regexp.MustCompile(`<ul>|</ul>|<ol>|</ol>`).ReplaceAllString(s, "")
 	s = regexp.MustCompile(`[\t]*<li>`).ReplaceAllString(s, "    · ")
 	s = regexp.MustCompile(`[\t]*</li>`).ReplaceAllString(s, "")
 
-    // Too many empty line
-    s = regexp.MustCompile(`[\n]{2,}`).ReplaceAllString(s, "\n\n")
-    s = regexp.MustCompile(`[\r]{2,}`).ReplaceAllString(s, "\r\r")
+	// Too many empty line
+	s = regexp.MustCompile(`[\n]{2,}`).ReplaceAllString(s, "\n\n")
+	s = regexp.MustCompile(`[\r]{2,}`).ReplaceAllString(s, "\r\r")
 
 	return s
 }
