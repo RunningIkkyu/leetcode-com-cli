@@ -109,8 +109,11 @@ func Html2BashText(s string) string {
 	s = regexp.MustCompile(`&nbsp;`).ReplaceAllString(s, " ")
 	s = regexp.MustCompile(`&lt;`).ReplaceAllString(s, "<")
 	s = regexp.MustCompile(`&gt;`).ReplaceAllString(s, ">")
-	s = regexp.MustCompile(`&quot;`).ReplaceAllString(s, "\"")
+    s = regexp.MustCompile(`&quot;`).ReplaceAllString(s, "\"")
+    s = regexp.MustCompile(`&ldquo;`).ReplaceAllString(s, "“")
+    s = regexp.MustCompile(`&rdquo;`).ReplaceAllString(s, "”")
 	s = regexp.MustCompile(`&amp;`).ReplaceAllString(s, "&")
+	s = regexp.MustCompile(`&hellip;`).ReplaceAllString(s, "…")
 	s = regexp.MustCompile(`&apos;|&#39;`).ReplaceAllString(s, "'")
 
 	// list
