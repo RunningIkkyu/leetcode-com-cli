@@ -4,7 +4,7 @@ An open to use leetcode.com client. The project now is working in progress.
 
 This project was heavily inspired by 'https://skygragon.github.io/leetcode-cli/commands#cache'
 
-[![asciicast](https://asciinema.org/a/LjYXa1UzEwHIKdcca2LAHggjD.svg)](https://asciinema.org/a/LjYXa1UzEwHIKdcca2LAHggjD)
+[![asciicast](https://asciinema.org/a/JJLU5e8EbjEvWBdL98wUGgFgu.svg)](https://asciinema.org/a/JJLU5e8EbjEvWBdL98wUGgFgu)
 
 # Installation
 
